@@ -1,0 +1,5 @@
+{
+  "name": "Recall Visualizer",
+  "description": "We asked human participants and language models (Llama3-8b-inst) to listen/\"read\" a narrative, then immediately recall the story. Humans vary in the degree of gist (light blue) vs. detail (dark blue) in their recall.",
+  "requestFramePermissions": []
+}
