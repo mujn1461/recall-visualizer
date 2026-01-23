@@ -1,4 +1,5 @@
-Interactive visualization page for the rate-distortion plot in the paper "Efficient uniform sampling explains non-uniform memory of narrative stories" by Jianing Mu, Alison R. Preston and Alexander G. Huth. Displays the transcript for the human and model-generated recall corresponding to each point on the plot. Built with Google AI Studio. 
+[Interactive visualization page](https://recall-visualizer.vercel.app/) for the rate-distortion plot in the paper ["Efficient uniform sampling explains non-uniform memory of narrative stories"](https://www.biorxiv.org/content/10.1101/2025.07.31.667952v1) by Jianing Mu, Alison R. Preston and Alexander G. Huth. Displays the transcript for the human and model-generated recall corresponding to each point on the plot. Built with Google AI Studio. 
+## Deployment at <https://recall-visualizer.vercel.app/>
 
 ## Run Locally
 
@@ -7,6 +8,5 @@ Interactive visualization page for the rate-distortion plot in the paper "Effici
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Run the app:
    `npm run dev`
