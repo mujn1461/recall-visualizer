@@ -1,6 +1,6 @@
 import React from 'react';
-import { DataPoint, DetailPanelProps } from '../types';
-import { MessageSquare, Maximize2, Hash } from 'lucide-react';
+import { DetailPanelProps } from '../types';
+import { MessageSquare } from 'lucide-react';
 
 export const DetailPanel: React.FC<DetailPanelProps> = ({ point }) => {
   if (!point) {

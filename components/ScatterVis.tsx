@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
   Label
 } from 'recharts';
-import { DataPoint, ScatterVisProps } from '../types';
+import { ScatterVisProps } from '../types';
 
 export const ScatterVis: React.FC<ScatterVisProps> = ({ 
   data, 
@@ -50,7 +50,8 @@ export const ScatterVis: React.FC<ScatterVisProps> = ({
     const { cx, cy, payload } = props;
     
     // Safety check for NaN values to prevent rendering errors
-    if (isNaN(cx) || isNaN(cy)) return null;
+    // Fix: Return empty group instead of null to satisfy Typescript/Recharts
+    if (isNaN(cx) || isNaN(cy)) return <g />;
 
     const isHovered = hoveredPoint?.id === payload.id;
     const isSelected = selectedPoint?.id === payload.id;

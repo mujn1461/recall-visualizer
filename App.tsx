@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { BrainCircuit, HelpCircle, Loader2, AlertTriangle } from 'lucide-react';
 import { ScatterVis } from './components/ScatterVis';
 import { DetailPanel } from './components/DetailPanel';
