@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FastForward, BrainCircuit } from 'lucide-react';
+import { FastForward } from 'lucide-react';
 
 interface IntroAnimationProps {
   onComplete: () => void;
@@ -20,7 +20,6 @@ interface TextStream {
 export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
   const [phase, setPhase] = useState<'loading' | 'flow' | 'dissolve'>('loading');
   const [streams, setStreams] = useState<TextStream[]>([]);
-  const [imgError, setImgError] = useState(false);
   const [displayText, setDisplayText] = useState<string | null>(null);
 
   // 1. Fetch Text
@@ -90,15 +89,15 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
         text: textChunk,
         startX,
         startY,
-        delay: Math.random() * 2.5,
-        duration: 3 + Math.random() * 2,
+        delay: Math.random(),
+        duration: 1 + Math.random() * 0.5,
       });
     }
     setStreams(newStreams);
 
     // Sequence Timers
-    const timer1 = setTimeout(() => setPhase('dissolve'), 6000);
-    const timer2 = setTimeout(onComplete, 7000);
+    const timer1 = setTimeout(() => setPhase('dissolve'), 2500);
+    const timer2 = setTimeout(onComplete, 3000);
 
     return () => {
       clearTimeout(timer1);
@@ -110,7 +109,7 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
   if (!displayText) return null;
 
   return (
-    <div className={`fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center overflow-hidden transition-opacity duration-1000 ${phase === 'dissolve' ? 'opacity-0' : 'opacity-100'}`}>
+    <div className={`fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center overflow-hidden transition-opacity duration-500 ${phase === 'dissolve' ? 'opacity-0' : 'opacity-100'}`}>
       
       {/* Skip Button */}
       <button 
@@ -119,26 +118,6 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
       >
         Skip Intro <FastForward className="w-4 h-4" />
       </button>
-
-      {/* Center Brain */}
-      <div className="relative z-20 flex items-center justify-center">
-         {/* Glow behind brain */}
-         <div className="absolute inset-0 bg-indigo-500/30 blur-[80px] rounded-full scale-150 animate-pulse" />
-         
-         {/* Brain Image with Fallback */}
-         {!imgError ? (
-            <img 
-                src="brain.png"
-                alt="Brain"
-                className="relative z-10 w-80 h-auto md:w-[32rem] object-contain drop-shadow-[0_0_50px_rgba(99,102,241,0.6)]"
-                onError={() => setImgError(true)}
-            />
-         ) : (
-            <div className="relative z-10 flex items-center justify-center p-8">
-                <BrainCircuit className="w-56 h-56 md:w-80 md:h-80 text-indigo-400 opacity-90 drop-shadow-[0_0_30px_rgba(99,102,241,0.5)]" strokeWidth={1} />
-            </div>
-         )}
-      </div>
 
       {/* Text Streams */}
       {streams.map((s) => (
@@ -151,7 +130,7 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
                 // Using CSS variables to pass random start positions to the keyframe
                 '--sx': `${s.startX}vw`,
                 '--sy': `${s.startY}vh`,
-                animation: `flowIntoBrain ${s.duration}s ease-in ${s.delay}s forwards`,
+                animation: `flowToCenter ${s.duration}s ease-in ${s.delay}s forwards`,
                 opacity: 0,
             } as React.CSSProperties}
         >
@@ -160,7 +139,7 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
       ))}
       
       <style>{`
-        @keyframes flowIntoBrain {
+        @keyframes flowToCenter {
             0% {
                 opacity: 0;
                 transform: translate3d(var(--sx), var(--sy), 0) scale(1);
