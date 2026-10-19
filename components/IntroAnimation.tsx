@@ -123,7 +123,7 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
       {streams.map((s) => (
         <div
             key={`stream-${s.id}`}
-            className="absolute font-mono text-xs md:text-sm font-medium text-indigo-200 pointer-events-none whitespace-nowrap"
+            className="absolute font-mono text-sm md:text-base font-medium text-indigo-200 pointer-events-none whitespace-nowrap"
             style={{
                 left: 0, 
                 top: 0,
