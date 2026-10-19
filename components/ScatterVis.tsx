@@ -16,7 +16,8 @@ export const ScatterVis: React.FC<ScatterVisProps> = ({
   hoveredPoint, 
   selectedPoint,
   onHover, 
-  onClick 
+  onClick,
+  onClearSelection
 }) => {
 
   // Calculate domains with padding
@@ -102,12 +103,10 @@ export const ScatterVis: React.FC<ScatterVisProps> = ({
   }, [hoveredPoint, selectedPoint, onHover, onClick]);
 
   return (
+    <div className="w-full h-full" onClick={onClearSelection}>
     <ResponsiveContainer width="100%" height="100%">
       <ScatterChart
         margin={{ top: 50, right: 30, bottom: 40, left: 40 }}
-        onClick={() => {
-            // Optional click handler for background
-        }}
       >
         <CartesianGrid 
             strokeDasharray="3 3" 
@@ -122,7 +121,7 @@ export const ScatterVis: React.FC<ScatterVisProps> = ({
             name="X" 
             axisLine={{ stroke: '#334155' }}
             tickLine={false}
-            tick={{ fill: '#64748b', fontSize: 10 }}
+            tick={{ fill: '#64748b', fontSize: 12 }}
             tickFormatter={(value) => Math.round(value).toString()}
             domain={domain.x}
         >
@@ -131,7 +130,7 @@ export const ScatterVis: React.FC<ScatterVisProps> = ({
                offset={-20} 
                position="insideBottom" 
                fill="#94a3b8" 
-               fontSize={12}
+               fontSize={16}
              />
         </XAxis>
         <YAxis 
@@ -140,7 +139,7 @@ export const ScatterVis: React.FC<ScatterVisProps> = ({
             name="Y" 
             axisLine={{ stroke: '#334155' }}
             tickLine={false}
-            tick={{ fill: '#64748b', fontSize: 10 }}
+            tick={{ fill: '#64748b', fontSize: 12 }}
             tickFormatter={(value) => Math.round(value).toString()}
             domain={domain.y}
         >
@@ -149,7 +148,7 @@ export const ScatterVis: React.FC<ScatterVisProps> = ({
                angle={-90} 
                position="insideLeft" 
                fill="#94a3b8" 
-               fontSize={12}
+               fontSize={16}
                offset={0}
                style={{ textAnchor: 'middle' }}
              />
@@ -167,5 +166,6 @@ export const ScatterVis: React.FC<ScatterVisProps> = ({
         />
       </ScatterChart>
     </ResponsiveContainer>
+    </div>
   );
 };

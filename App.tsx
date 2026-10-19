@@ -208,7 +208,7 @@ export default function App() {
           {/* Top Control Bar: Stories + Legend */}
           <div className="flex-none px-6 pt-6 pb-2 z-10 flex flex-col-reverse md:flex-row items-start md:items-start justify-between gap-4 min-h-[80px]">
             {/* Story Selector (Left) */}
-            <div className="flex-1 min-w-0 flex items-center h-full">
+            <div className="flex-1 min-w-0 flex flex-col items-start gap-3 h-full">
                 {stories.length > 1 && (
                     <div className="inline-flex p-1 bg-slate-900/50 border border-slate-800 rounded-xl gap-1 overflow-x-auto max-w-full">
                         {stories.map(story => (
@@ -227,6 +227,9 @@ export default function App() {
                         ))}
                     </div>
                 )}
+                <p className="text-sm text-slate-400">
+                  Click on a dot to view the recall. Click on blank plot space to clear the selection.
+                </p>
             </div>
 
             {/* Legend (Right) */}
@@ -244,6 +247,10 @@ export default function App() {
                   selectedPoint={selectedPoint}
                   onHover={setHoveredPoint}
                   onClick={handlePointClick}
+                  onClearSelection={() => {
+                    setSelectedPoint(null);
+                    setHoveredPoint(null);
+                  }}
                 />
                 
                 {/* Stats Overlay (Top Left) */}

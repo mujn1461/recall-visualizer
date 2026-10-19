@@ -47,10 +47,10 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ point }) => {
                    </span>
                 )}
                 <span className="bg-slate-800 px-2 py-1 rounded">
-                    X: {point.x.toFixed(2)}
+                    Levenshtein distance: {point.x.toFixed(2)}
                 </span>
                 <span className="bg-slate-800 px-2 py-1 rounded">
-                    Y: {point.y.toFixed(2)}
+                    I(recall; story): {point.y.toFixed(2)}
                 </span>
                 {point.att_entropy !== undefined && (
                    <span className="bg-slate-800 px-2 py-1 rounded text-indigo-300">

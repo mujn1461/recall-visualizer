@@ -18,6 +18,7 @@ export interface ScatterVisProps {
   selectedPoint: DataPoint | null;
   onHover: (point: DataPoint | null) => void;
   onClick: (point: DataPoint) => void;
+  onClearSelection: () => void;
 }
 
 export interface DetailPanelProps {
